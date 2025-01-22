@@ -12,6 +12,7 @@
 
 body {
     font-family: 'Literata', serif;
+    font-weight: 300;
     background-image: url(img/background_image.jpg);
     color: var(--light-text);
     background-repeat: no-repeat;
@@ -19,6 +20,12 @@ body {
     background-position: center;
     background-attachment: fixed;
     min-height: 100vh;
+}
+
+/* Заголовки жирным шрифтом */
+h1, h2, h3 {
+    font-family: 'Literata', serif;
+    font-weight: 700;
 }
 
 /* Header styles */
@@ -40,6 +47,26 @@ nav {
     text-decoration: none;
     margin-left: 2rem;
     font-weight: 300;
+    position: relative;
+}
+
+.nav-links a::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background-color: var(--primary-color);
+    transition: width 0.3s ease;
+}
+
+.nav-links a:hover {
+    color: var(--primary-color);
+}
+
+.nav-links a:hover::after {
+    width: 100%;
 }
 
 /* Hero section */
@@ -62,6 +89,12 @@ nav {
     height: 100%;
     object-fit: cover;
     border-radius: 8px;
+    transition: transform 0.3s ease;
+}
+
+.heroes-preview img:hover, 
+.gameplay-preview img:hover {
+    transform: scale(1.02);
 }
 
 /* Features section */
@@ -81,6 +114,14 @@ nav {
     background: rgba(0, 0, 0, 0.5);
     padding: 1.5rem;
     border-radius: 8px;
+    transform: translateY(0);
+    transition: transform 0.3s ease, background 0.3s ease;
+}
+
+.feature:hover {
+    transform: translateY(-5px);
+    background: rgba(255, 0, 0, 0.1);
+    box-shadow: 0 5px 15px rgba(255, 0, 0, 0.2);
 }
 
 /* Start package */
@@ -108,6 +149,14 @@ nav {
     background: rgba(0, 0, 0, 0.5);
     padding: 1.5rem;
     border-radius: 8px;
+    transform: scale(1);
+    transition: transform 0.3s ease, background 0.3s ease;
+}
+
+.package-item:hover {
+    transform: scale(1.03);
+    background: rgba(255, 0, 0, 0.1);
+    box-shadow: 0 5px 15px rgba(255, 0, 0, 0.2);
 }
 
 .try-button {
@@ -119,6 +168,19 @@ nav {
     border-radius: 4px;
     cursor: pointer;
     margin-top: 2rem;
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.3s ease;
+    font-weight: 700;
+}
+
+.try-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(255, 0, 0, 0.4);
+}
+
+.try-button:active {
+    transform: translateY(0);
 }
 
 .coach-image {
@@ -129,6 +191,12 @@ nav {
     max-width: 100%;
     height: auto;
     filter: grayscale(100%);
+    transition: filter 0.3s ease, transform 0.3s ease;
+}
+
+.coach-image:hover img {
+    filter: grayscale(0);
+    transform: scale(1.05);
 }
 
 /* Footer */
@@ -148,6 +216,43 @@ footer {
 .social-links a {
     color: var(--light-text);
     text-decoration: none;
+    padding: 8px 16px;
+    border-radius: 4px;
+    transition: background 0.3s ease, color 0.3s ease;
+    font-weight: 300;
+}
+
+.social-links a:hover {
+    background: var(--primary-color);
+    color: white;
+}
+
+/* Добавляем пульсирующую анимацию для цены */
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+    100% { transform: scale(1); }
+}
+
+.price {
+    display: inline-block;
+    animation: pulse 2s infinite;
+}
+
+/* Цена жирным шрифтом */
+.price h2 {
+    font-weight: 700;
+}
+
+/* Заголовки в карточках жирным */
+.feature h3,
+.package-item h3 {
+    font-weight: 700;
+}
+
+/* Текст в карточках светлым шрифтом */
+.package-item p {
+    font-weight: 300;
 }
 
 /* Responsive design */
@@ -178,4 +283,4 @@ footer {
 main {
     background: rgba(0, 0, 0, 0.7);
     min-height: 100vh;
-} 
+}
